@@ -22,4 +22,4 @@ export const removeElements = (parentSelector, selfSelector) =>
 	void document
 		.querySelector(parentSelector)
 		.querySelectorAll(selfSelector)
-		.forEach((element) => element.remove());
+		.forEach((element) => void element.remove());
