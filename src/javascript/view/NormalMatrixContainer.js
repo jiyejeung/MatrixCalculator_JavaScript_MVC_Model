@@ -57,22 +57,24 @@ export default class {
 	}
 	printButtonContainer() {
 		const buttonCreateNormalMatrix = createElement('BUTTON', 'CREATE');
-		const buttonRandomNormalMatrixContainer = createElement('BUTTON');
-		const buttonDeleteNormalMatrixContainer = createElement('BUTTON');
-		const iTrashCan = createElement('I');
-		const iDice = createElement('I');
+		const buttonRandomNormalMatrixContainer = this.printButton('buttonRandomNormalMatrixContainer', 'fa-solid fa-dice');
+		const buttonDeleteNormalMatrixContainer = this.printButton('buttonDeleteNormalMatrixContainer', 'fa-solid fa-trash-can');
 
 		buttonCreateNormalMatrix.className = 'buttonCreateNormalMatrix';
-		buttonRandomNormalMatrixContainer.className = 'buttonRandomNormalMatrixContainer';
-		buttonDeleteNormalMatrixContainer.className = 'buttonDeleteNormalMatrixContainer';
-		iTrashCan.className = '';
-		iDice.className = '';
-
-		buttonDeleteNormalMatrixContainer.appendChild(iTrashCan);
-		buttonRandomNormalMatrixContainer.appendChild(iDice);
 
 		const fragment = combineElement([buttonCreateNormalMatrix, buttonRandomNormalMatrixContainer, buttonDeleteNormalMatrixContainer]);
 
 		return fragment;
+	}
+	printButton(buttonClassName, iClassName) {
+		const buttonNormal = createElement('BUTTON');
+		const iNormal = createElement('I');
+
+		buttonNormal.className = buttonClassName;
+		iNormal.className = iClassName;
+
+		buttonNormal.appendChild(iNormal);
+
+		return buttonNormal;
 	}
 }
