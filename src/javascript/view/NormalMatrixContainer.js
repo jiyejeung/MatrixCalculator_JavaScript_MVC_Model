@@ -7,9 +7,8 @@ export default class {
 	printNormalMatrixContainer() {
 		const sectionMatrixContainer = createElement('SECTION');
 		sectionMatrixContainer.className = 'sectionMatrixContainer';
-		sectionMatrixContainer.appendChild(this.printTitle());
-		sectionMatrixContainer.appendChild(this.printMatrixTopContainer());
-		sectionMatrixContainer.appendChild(this.printMatrixBottomContainer());
+
+		sectionMatrixContainer.append(this.printMatrixTopContainer(), this.printMatrixBottomContainer());
 
 		return sectionMatrixContainer;
 	}
@@ -36,8 +35,7 @@ export default class {
 		divBottomTopNormalMatrixContainer.appendChild(this.printRowAndColContainer());
 		divBottomBottomNormalMatrixContainer.appendChild(this.printButtonContainer());
 
-		divBottomNormalMatrixContainer.appendChild(divBottomTopNormalMatrixContainer);
-		divBottomNormalMatrixContainer.appendChild(divBottomBottomNormalMatrixContainer);
+		divBottomNormalMatrixContainer.append(this.printTitle(), divBottomTopNormalMatrixContainer, divBottomBottomNormalMatrixContainer);
 
 		return divBottomNormalMatrixContainer;
 	}

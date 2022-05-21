@@ -8,7 +8,7 @@ export default class {
 		const sectionCalcMatrixContainer = createElement('SECTION');
 		sectionCalcMatrixContainer.className = 'sectionCalcMatrixContainer';
 
-		sectionCalcMatrixContainer.append(this.printTitle(), this.printMatrixTopContainer(), this.printMatrixBottomContainer());
+		sectionCalcMatrixContainer.append(this.printMatrixTopContainer(), this.printMatrixBottomContainer());
 
 		return sectionCalcMatrixContainer;
 	}
@@ -29,13 +29,18 @@ export default class {
 	}
 	printMatrixBottomContainer() {
 		const divBottomCalcMatrixContainer = createElement('DIV');
-		const fragment = combineElement([
+		const divBottomCalcMatrixButtonContainer = createElement('DIV');
+
+		divBottomCalcMatrixContainer.className = 'divBottomCalcMatrixContainer';
+		divBottomCalcMatrixButtonContainer.className = 'divBottomCalcMatrixButtonContainer';
+
+		divBottomCalcMatrixButtonContainer.append(
 			this.printMatrixButtonContainer('buttonCalcPlus', 'fa-solid fa-square-plus iCalcPlus'),
 			this.printMatrixButtonContainer('buttonCalcMinus', 'fa-solid fa-square-minus iCalcMinus'),
-			this.printMatrixButtonContainer('buttonCalcMultiply', 'fa-solid fa-square-xmark iCalcMultiply'),
-		]);
-
-		divBottomCalcMatrixContainer.appendChild(fragment);
+			this.printMatrixButtonContainer('buttonCalcMultiply', 'fa-solid fa-square-xmark iCalcMultiply')
+		);
+		
+		divBottomCalcMatrixContainer.append(this.printTitle(), divBottomCalcMatrixButtonContainer);
 
 		return divBottomCalcMatrixContainer;
 	}
