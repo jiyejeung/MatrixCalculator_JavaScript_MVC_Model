@@ -22,16 +22,24 @@ export default class {
 	printMatrixTopContainer() {
 		const divTopNormalMatrixContainer = createElement('DIV');
 		divTopNormalMatrixContainer.className = 'divTopNormalMatrixContainer';
+		divTopNormalMatrixContainer.appendChild(this.printDisplayMatrixContainer());
 
 		return divTopNormalMatrixContainer;
 	}
 	printDisplayMatrixContainer() {
-		return;
+		const divDisplayMatrixContainer = createElement('DIV');
+		divDisplayMatrixContainer.className = 'divDisplayMatrixContainer';
+
+		return divDisplayMatrixContainer;
 	}
 	printMatrixBottomContainer() {
 		const divBottomNormalMatrixContainer = createElement('DIV');
 		const divBottomTopNormalMatrixContainer = createElement('DIV');
 		const divBottomBottomNormalMatrixContainer = createElement('DIV');
+
+		divBottomNormalMatrixContainer.className = 'divBottomNormalMatrixContainer';
+		divBottomTopNormalMatrixContainer.className = 'divBottomTopNormalMatrixContainer';
+		divBottomBottomNormalMatrixContainer.className = 'divBottomBottomNormalMatrixContainer';
 
 		divBottomTopNormalMatrixContainer.appendChild(this.printRowAndColContainer());
 		divBottomBottomNormalMatrixContainer.appendChild(this.printButtonContainer());

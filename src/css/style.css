@@ -136,7 +136,8 @@ table {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -146,6 +147,150 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.app section.sectionMatrixContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 95%;
+  border: 1px solid black;
+  margin-right: 3vw;
+}
+.app section.sectionMatrixContainer .divTopNormalMatrixContainer {
+  width: 100%;
+  height: 65%;
+  margin-bottom: 0.7vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer h1.h1NormalMatrixTitle {
+  width: 100%;
+  font-size: 3.5vw;
+  font-family: "Times New Roman", Times, serif;
+  padding-left: 1vw;
+  margin-bottom: 1vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomTopNormalMatrixContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomTopNormalMatrixContainer input {
+  width: 13vw;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 2vw;
+  font-family: "Times New Roman", Times, serif;
+  height: 3.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomTopNormalMatrixContainer input.inputNormalMatrixRow {
+  margin-right: 1.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonCreateNormalMatrix {
+  display: inline-block;
+  display: none;
+  width: 27.5vw;
+  height: 5vw;
+  font-size: 3.5vw;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonRandomNormalMatrixContainer {
+  display: none;
+  display: inline-block;
+  width: 13.75vw;
+  height: 5vw;
+  cursor: pointer;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonRandomNormalMatrixContainer i.iDice {
+  font-size: 3.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonDeleteNormalMatrixContainer {
+  display: none;
+  display: inline-block;
+  width: 13.75vw;
+  height: 5vw;
+  cursor: pointer;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonDeleteNormalMatrixContainer i.iTrashCan {
+  font-size: 3.5vw;
+}
+.app section.sectionCalcMatrixContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 95%;
+  border: 1px solid black;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.7vw;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer h1.h1CalcMatrixTitle {
+  width: 100%;
+  font-size: 3.5vw;
+  font-family: "Times New Roman", Times, serif;
+  padding-left: 1vw;
+  margin-bottom: 1vw;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer h2.h2CalcMatrixAuthor {
+  width: 100%;
+  font-size: 1.5vw;
+  text-align: right;
+  font-family: "Times New Roman", Times, serif;
+  padding-right: 1vw;
+  margin-bottom: 1.5vw;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer button {
+  background-color: transparent;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer button i {
+  cursor: pointer;
+  font-size: 6vw;
+}
+.app section.sectionCalcMatrixContainer .divBottomCalcMatrixContainer {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }/*# sourceMappingURL=style.css.map */

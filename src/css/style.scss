@@ -2,13 +2,136 @@
 @import 'variable';
 @import 'mixin';
 
-html, body {
-  width: 100%;
-  height: 100%;
+html,
+body {
+	width: 100%;
+	height: 100%;
 }
 
 .app {
-  width: 100%;
-  height: 100%;
-  @include flexRow;
+	width: 100%;
+	height: 100%;
+	@include flexRow;
+	justify-content: center;
+	section.sectionMatrixContainer {
+		@include flexCol;
+		width: 30%;
+		height: 95%;
+		border: 1px solid black;
+		margin-right: 3vw;
+		.divTopNormalMatrixContainer {
+			width: 100%;
+			height: 65%;
+			margin-bottom: 0.7vw;
+		}
+		.divBottomNormalMatrixContainer {
+			width: 100%;
+      height: 35%;
+			@include flexCol;
+			h1.h1NormalMatrixTitle {
+				width: 100%;
+				font-size: 3.5vw;
+				font-family: 'Times New Roman', Times, serif;
+				padding-left: 1vw;
+				margin-bottom: 1vw;
+			}
+			.divBottomTopNormalMatrixContainer {
+				@include flexRow;
+				width: 100%;
+				margin-bottom: 1.5vw;
+				input {
+					width: 13vw;
+					border: 1px solid black;
+					text-align: center;
+					font-size: 2vw;
+					font-family: 'Times New Roman', Times, serif;
+					height: 3.5vw;
+				}
+				input.inputNormalMatrixRow {
+					margin-right: 1.5vw;
+				}
+				input.inputNormalMatrixCol {
+				}
+			}
+			.divBottomBottomNormalMatrixContainer {
+				width: 100%;
+				@include flexRow;
+				margin-bottom: 1.5vw;
+				button.buttonCreateNormalMatrix {
+					display: inline-block;
+					display: none;
+					width: 27.5vw;
+					height: 5vw;
+					font-size: 3.5vw;
+					font-family: 'Times New Roman', Times, serif;
+					border: 1px solid black;
+          cursor: pointer;
+				}
+				button.buttonRandomNormalMatrixContainer {
+					display: none;
+					display: inline-block;
+					width: 13.75vw;
+					height: 5vw;
+          cursor: pointer;
+					i.iDice {
+						font-size: 3.5vw;
+					}
+				}
+				button.buttonDeleteNormalMatrixContainer {
+					display: none;
+					display: inline-block;
+					width: 13.75vw;
+					height: 5vw;
+          cursor: pointer;
+					i.iTrashCan {
+						font-size: 3.5vw;
+					}
+				}
+			}
+		}
+	}
+	section.sectionCalcMatrixContainer {
+    @include flexCol;
+		width: 30%;
+		height: 95%;
+		border: 1px solid black;
+		.divTopCalcMatrixContainer {
+			width: 100%;
+			height: 35%;
+      @include flexCol;
+			margin-bottom: 0.7vw;
+      h1.h1CalcMatrixTitle {
+        width: 100%;
+        font-size: 3.5vw;
+        font-family: 'Times New Roman', Times, serif;
+        padding-left: 1vw;
+        margin-bottom: 1vw;
+      }
+      h2.h2CalcMatrixAuthor {
+        width: 100%;
+        font-size: 1.5vw;
+        text-align: right;
+        font-family: 'Times New Roman', Times, serif;
+        padding-right: 1vw;
+        margin-bottom: 1.5vw;
+      }
+      .divTopCalcMatrixButtonContainer {
+        @include flexRow;
+        width: 100%;
+        justify-content: space-around;
+        button {
+          background-color: transparent;
+          i {
+            cursor: pointer;
+            font-size: 6vw;
+          }
+        }
+      }
+		}
+		.divBottomCalcMatrixContainer {
+      width: 100%;
+      height: 65%;
+      @include flexCol;
+		}
+	}
 }
