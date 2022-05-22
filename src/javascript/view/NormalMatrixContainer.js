@@ -1,3 +1,4 @@
+import Controller from '../controller/Controller.js';
 import { combineElement, createElement } from '../utils/ElementTool.js';
 
 export default class {
@@ -46,17 +47,17 @@ export default class {
 		inputNormalMatrixRow.className = 'inputNormalMatrixRow';
 		inputNormalMatrixCol.className = 'inputNormalMatrixCol';
 
-		inputNormalMatrixRow.setAttribute('placeholder', 'ROW');
-		inputNormalMatrixCol.setAttribute('placeholder', 'COL');
+		inputNormalMatrixRow.setAttribute('placeholder', Controller.GENERAL_MATRIX.ROW_KEYWORD);
+		inputNormalMatrixCol.setAttribute('placeholder', Controller.GENERAL_MATRIX.COL_KEYWORD);
 
 		const fragment = combineElement([inputNormalMatrixRow, inputNormalMatrixCol]);
 
 		return fragment;
 	}
 	printButtonContainer() {
-		const buttonCreateNormalMatrix = createElement('BUTTON', 'CREATE');
-		const buttonRandomNormalMatrixContainer = this.printButton('buttonRandomNormalMatrixContainer', 'fa-solid fa-dice');
-		const buttonDeleteNormalMatrixContainer = this.printButton('buttonDeleteNormalMatrixContainer', 'fa-solid fa-trash-can');
+		const buttonCreateNormalMatrix = createElement('BUTTON', Controller.GENERAL_MATRIX.CREATE_KEYWORD);
+		const buttonRandomNormalMatrixContainer = this.printButton('buttonRandomNormalMatrixContainer', 'fa-solid fa-dice iDice');
+		const buttonDeleteNormalMatrixContainer = this.printButton('buttonDeleteNormalMatrixContainer', 'fa-solid fa-trash-can iTrashCan');
 
 		buttonCreateNormalMatrix.className = 'buttonCreateNormalMatrix';
 

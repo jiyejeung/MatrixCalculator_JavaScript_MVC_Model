@@ -1,9 +1,7 @@
+import Constants from '../model/Constants.js';
 import { createElement } from '../utils/ElementTool.js';
 
-export default class {
-	constructor(h1CalcMatrixTitleText) {
-		this.h1CalcMatrixTitleText = h1CalcMatrixTitleText;
-	}
+export default Object.freeze({
 	printCalcMatrixContainer() {
 		const sectionCalcMatrixContainer = createElement('SECTION');
 		sectionCalcMatrixContainer.className = 'sectionCalcMatrixContainer';
@@ -11,16 +9,16 @@ export default class {
 		sectionCalcMatrixContainer.append(this.printMatrixTopContainer(), this.printMatrixBottomContainer());
 
 		return sectionCalcMatrixContainer;
-	}
+	},
 	printMatrixTopContainer() {
 		const divTopCalcMatrixContainer = createElement('DIV');
 		divTopCalcMatrixContainer.className = 'divTopCalcMatrixContainer';
 
 		return divTopCalcMatrixContainer;
-	}
+	},
 	printDisplayMatrixContainer() {
 		return;
-	}
+	},
 	printMatrixBottomContainer() {
 		const divBottomCalcMatrixContainer = createElement('DIV');
 		const divBottomCalcMatrixButtonContainer = createElement('DIV');
@@ -36,13 +34,13 @@ export default class {
 		divBottomCalcMatrixContainer.append(this.printTitle(), divBottomCalcMatrixButtonContainer);
 
 		return divBottomCalcMatrixContainer;
-	}
+	},
 	printTitle() {
-		const h1CalcMatrixTitle = createElement('H1', this.h1CalcMatrixTitleText);
+		const h1CalcMatrixTitle = createElement('H1', Constants.CALC_MATRIX.CALC_MATRIX_TITLE);
 		h1CalcMatrixTitle.className = 'h1CalcMatrixTitle';
 
 		return h1CalcMatrixTitle;
-	}
+	},
 	printMatrixButtonContainer(firstArg, iCalcClassName) {
 		const buttonCalcMatrixContainer = createElement('BUTTON');
 		const iCalc = createElement('I');
@@ -53,5 +51,5 @@ export default class {
 		buttonCalcMatrixContainer.appendChild(iCalc);
 
 		return buttonCalcMatrixContainer;
-	}
-}
+	},
+});
