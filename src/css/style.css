@@ -151,6 +151,9 @@ body {
   align-items: center;
   justify-content: center;
 }
+.app section {
+  border-radius: 1vw;
+}
 .app section.sectionMatrixContainer {
   display: flex;
   flex-direction: column;
@@ -210,33 +213,53 @@ body {
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonCreateNormalMatrix {
   display: inline-block;
-  display: none;
   width: 27.5vw;
   height: 5vw;
   font-size: 3.5vw;
   font-family: "Times New Roman", Times, serif;
-  border: 1px solid black;
+  border-radius: 1.5vw;
+  background-color: rgb(123, 91, 145);
+  color: #fafafa;
   cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonCreateNormalMatrix:hover {
+  background-color: rgb(89, 50, 114);
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonRandomNormalMatrixContainer {
   display: none;
-  display: inline-block;
   width: 13.75vw;
   height: 5vw;
+  border-top-left-radius: 1.5vw;
+  border-bottom-left-radius: 1.5vw;
+  background-color: rgb(123, 91, 145);
+  border-right: 1px solid #fafafa;
   cursor: pointer;
+  transition: all 300ms ease-in-out;
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonRandomNormalMatrixContainer i.iDice {
+  color: #fafafa;
   font-size: 3.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonRandomNormalMatrix:hover {
+  background-color: rgb(89, 50, 114);
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonDeleteNormalMatrixContainer {
   display: none;
-  display: inline-block;
   width: 13.75vw;
   height: 5vw;
+  border-top-right-radius: 1.5vw;
+  border-bottom-right-radius: 1.5vw;
+  background-color: rgb(123, 91, 145);
   cursor: pointer;
+  transition: all 300ms ease-in-out;
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonDeleteNormalMatrixContainer i.iTrashCan {
+  color: #fafafa;
   font-size: 3.5vw;
+}
+.app section.sectionMatrixContainer .divBottomNormalMatrixContainer .divBottomBottomNormalMatrixContainer button.buttonDeleteNormalMatrix:hover {
+  background-color: rgb(89, 50, 114);
 }
 .app section.sectionCalcMatrixContainer {
   display: flex;
@@ -258,14 +281,14 @@ body {
 }
 .app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer h1.h1CalcMatrixTitle {
   width: 100%;
+  text-align: center;
   font-size: 3.5vw;
   font-family: "Times New Roman", Times, serif;
-  padding-left: 1vw;
-  margin-bottom: 1vw;
+  margin-bottom: 0.5vw;
 }
 .app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer h2.h2CalcMatrixAuthor {
   width: 100%;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   text-align: right;
   font-family: "Times New Roman", Times, serif;
   padding-right: 1vw;
@@ -277,14 +300,20 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
 }
 .app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer button {
   background-color: transparent;
+  margin: 0 1.5vw;
 }
 .app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer button i {
-  cursor: pointer;
+  color: rgb(123, 91, 145);
   font-size: 6vw;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.app section.sectionCalcMatrixContainer .divTopCalcMatrixContainer .divTopCalcMatrixButtonContainer button i:hover {
+  color: rgb(89, 50, 114);
 }
 .app section.sectionCalcMatrixContainer .divBottomCalcMatrixContainer {
   width: 100%;
