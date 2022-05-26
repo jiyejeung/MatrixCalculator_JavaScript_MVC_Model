@@ -1,3 +1,3 @@
 import Controller from './controller/Controller.js';
 
-window.addEventListener('DOMContentLoaded', () => void new Controller());
+window.addEventListener('DOMContentLoaded', () => void Controller.init());
