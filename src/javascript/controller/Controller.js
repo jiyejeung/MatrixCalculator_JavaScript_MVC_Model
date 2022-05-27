@@ -11,23 +11,33 @@ export default Object.freeze({
 		$('#app').append(this.normalFirstMatrixContainer.printNormalMatrixContainer(), this.normalSecondMatrixContainer.printNormalMatrixContainer(), CalcMatrixContainer.printCalcMatrixContainer());
 		this.printMatrix();
 		this.deleteInputMatrixItems();
+		this.randomInputMatrixItems();
 	},
 	printMatrix() {
-		$$('.buttonCreateNormalMatrix').forEach((button, index) => {
-			button.addEventListener('click', () => {
-				this.confirmNumber($$('.inputNormalMatrixRow')[index].value, $$('.inputNormalMatrixCol')[index].value, index);
-			});
-		});
+		$$('.buttonCreateNormalMatrix').forEach(
+			(button, index) =>
+				void button.addEventListener('click', () => {
+					this.confirmNumber($$('.inputNormalMatrixRow')[index].value, $$('.inputNormalMatrixCol')[index].value, index);
+				})
+		);
 	},
 	resetInputRowAndCol(index) {
 		$$('.inputNormalMatrixRow')[index].value = '';
 		$$('.inputNormalMatrixCol')[index].value = '';
 	},
+	setReadOnly(index) {
+		$$('.inputNormalMatrixRow')[index].setAttribute('readOnly', 'readOnly');
+		$$('.inputNormalMatrixCol')[index].setAttribute('readOnly', 'readOnly');
+	},
+	setNotReadOnly(index) {
+		$$('.inputNormalMatrixRow')[index].removeAttribute('readOnly');
+		$$('.inputNormalMatrixCol')[index].removeAttribute('readOnly');
+	},
 	confirmNumber(firstArg, secondArg, index) {
 		if (/^[1-9]+$/.test(firstArg) && /^[1-9]+$/.test(secondArg)) {
 			this.resetNormalMatrixContainer(index);
 			this.normalFirstMatrixContainer.printInputMatrixItems(this.normalFirstMatrixContainer.createInputMatrixItems(parseInt(firstArg), parseInt(secondArg)), index);
-			console.log(firstArg, secondArg);
+			this.setReadOnly(index);
 			return;
 		} else if (firstArg === '' || secondArg === '') {
 			this.resetInputRowAndCol(index);
@@ -40,7 +50,6 @@ export default Object.freeze({
 		}
 	},
 	resetNormalMatrixContainer(index) {
-		this.resetInputRowAndCol(index);
 		switch (index) {
 			case 0:
 				this.normalFirstMatrixContainer.resetInputMatrixItems(index);
@@ -53,17 +62,30 @@ export default Object.freeze({
 		}
 	},
 	deleteInputMatrixItems() {
-		$$('.buttonDeleteNormalMatrixContainer').forEach((button, index) => {
-			button.addEventListener('click', () => {
-				this.resetNormalMatrixContainer(index);
-				console.log('hello');
-			});
-		});
+		$$('.buttonDeleteNormalMatrixContainer').forEach(
+			(button, index) =>
+				void button.addEventListener('click', () => {
+					this.resetNormalMatrixContainer(index);
+					this.resetInputRowAndCol(index);
+					this.setNotReadOnly(index);
+				})
+		);
 	},
 	deleteModal() {
 		$('.buttonDeleteModalContainer').addEventListener('click', () => {
 			Modal.removeModal();
 		});
+	},
+	printRandomNumber() {
+		return Math.floor(Math.random() * 2) ? Math.floor(Math.random() * 100) : -Math.floor(Math.random() * 100);
+	},
+	inputRandomNumber(index) {
+		$$('.divDisplayMatrixContainer')
+			[index].querySelectorAll('.inputMatrixItem')
+			.forEach((input) => void (input.value = this.printRandomNumber()));
+	},
+	randomInputMatrixItems() {
+		$$('.buttonRandomNormalMatrixContainer').forEach((button, index) => void button.addEventListener('click', () => void this.inputRandomNumber(index)));
 	},
 	get GENERAL_MATRIX() {
 		return Constants.GENERAL_MATRIX;
