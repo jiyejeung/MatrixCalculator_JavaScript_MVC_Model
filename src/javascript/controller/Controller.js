@@ -21,8 +21,7 @@ export default Object.freeze({
 	confirmNumber(firstArg, secondArg, index) {
 		if (/^[1-9]+$/.test(firstArg) && /^[1-9]+$/.test(secondArg)) {
 			this.normalFirstMatrixContainer.printInputMatrixItems(this.normalFirstMatrixContainer.createInputMatrixItems(parseInt(firstArg), parseInt(secondArg)), index);
-			// input의 value를 View에 보내주고, 보내준 값을 토대로 matrix를 생성해야함.
-			// createButton을 숨기고, reset, delete button을 보여줘야함.
+			this.normalFirstMatrixContainer.toggleButtons(index)
 			console.log(firstArg, secondArg);
 			return;
 		} else if (firstArg === '' || secondArg === '') {

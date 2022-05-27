@@ -1,9 +1,10 @@
 import Controller from '../controller/Controller.js';
-import { $$, combineElement, createElement } from '../utils/ElementTool.js';
+import { $, $$, combineElement, createElement } from '../utils/ElementTool.js';
 
 export default class {
 	constructor(h1NormalMatrixTitleText) {
 		this.h1NormalMatrixTitleText = h1NormalMatrixTitleText;
+		this.toggleButtonsHandler = true;
 	}
 	printNormalMatrixContainer() {
 		const sectionMatrixContainer = createElement('SECTION');
@@ -119,5 +120,16 @@ export default class {
 		buttonNormal.appendChild(iNormal);
 
 		return buttonNormal;
+	}
+	toggleButtons(index) {
+		if (this.toggleButtonsHandler) {
+			$$('.buttonCreateNormalMatrix')[index].style.display = 'none';
+			$$('.buttonDeleteNormalMatrixContainer')[index].style.display = 'inline-block';
+			$$('.buttonRandomNormalMatrixContainer')[index].style.display = 'inline-block';
+		} else {
+			$$('.buttonCreateNormalMatrix')[index].style.display = 'inline-block';
+			$$('.buttonDeleteNormalMatrixContainer')[index].style.display = 'none';
+			$$('.buttonRandomNormalMatrixContainer')[index].style.display = 'none';
+		}
 	}
 }
