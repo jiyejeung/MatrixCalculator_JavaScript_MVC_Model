@@ -1,5 +1,5 @@
 import Constants from '../model/Constants.js';
-import { $, $$ } from '../utils/ElementTool.js';
+import { $, $$, combineElement } from '../utils/ElementTool.js';
 import CalcMatrixContainer from '../view/CalcMatrixContainer.js';
 import Modal from '../view/Modal.js';
 import NormalMatrixContainer from '../view/NormalMatrixContainer.js';
@@ -14,24 +14,28 @@ export default Object.freeze({
 	printMatrix() {
 		$$('.buttonCreateNormalMatrix').forEach((button, index) => {
 			button.addEventListener('click', () => {
-				this.confirmNumber($$('.inputNormalMatrixRow')[index].value, $$('.inputNormalMatrixCol')[index].value);
+				this.confirmNumber($$('.inputNormalMatrixRow')[index].value, $$('.inputNormalMatrixCol')[index].value, index);
 			});
 		});
 	},
-	confirmNumber(firstArg, secondArg) {
+	confirmNumber(firstArg, secondArg, index) {
 		if (/^[1-9]+$/.test(firstArg) && /^[1-9]+$/.test(secondArg)) {
+			this.normalFirstMatrixContainer.printInputMatrixItems(this.normalFirstMatrixContainer.createInputMatrixItems(parseInt(firstArg), parseInt(secondArg)), index);
 			// input의 value를 View에 보내주고, 보내준 값을 토대로 matrix를 생성해야함.
 			// createButton을 숨기고, reset, delete button을 보여줘야함.
 			console.log(firstArg, secondArg);
 			return;
-		} else if (!/^[1-9]+$/.test(firstArg)) {
-			// firstValue의 값을 지워야함.
-			console.log('false');
-		} else if (!/^[1-9]+$/.test(secondArg)) {
-			// firstValue의 값을 지워야함.
-			console.log('false');
+		} else if (firstArg === '' || secondArg === '') {
+			$$('.inputNormalMatrixRow')[index].value = '';
+			$$('.inputNormalMatrixCol')[index].value = '';
+			Modal.printModal(`${Constants.WARNING_KEYWORD.WARNING01} ${Constants.WARNING_KEYWORD.WARNING02}`);
+			return;
+		} else if (!/^[1-9]+$/.test(firstArg) || !/^[1-9]+$/.test(secondArg)) {
+			$$('.inputNormalMatrixRow')[index].value = '';
+			$$('.inputNormalMatrixCol')[index].value = '';
+			Modal.printModal(Constants.WARNING_KEYWORD.WARNING02);
+			return;
 		}
-		Modal.printModal(Constants.WARNING_KEYWORD.WARNING01);
 	},
 	deleteModal() {
 		$('.buttonDeleteModalContainer').addEventListener('click', () => {

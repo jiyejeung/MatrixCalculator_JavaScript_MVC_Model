@@ -1,5 +1,5 @@
 import Controller from '../controller/Controller.js';
-import { combineElement, createElement } from '../utils/ElementTool.js';
+import { $$, combineElement, createElement } from '../utils/ElementTool.js';
 
 export default class {
 	constructor(h1NormalMatrixTitleText) {
@@ -32,6 +32,39 @@ export default class {
 
 		return divDisplayMatrixContainer;
 	}
+	createInputMatrixItem() {
+		const inputMatrixItem = createElement('INPUT');
+
+		inputMatrixItem.className = 'inputMatrixItem';
+
+		inputMatrixItem.setAttribute('value', '0');
+		inputMatrixItem.setAttribute('maxLength', '2');
+
+		return inputMatrixItem;
+	}
+	createBr() {
+		return createElement('BR');
+	}
+	createInputMatrixItems(rowValue, colValue) {
+		let elements = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0).map(() => this.createInputMatrixItem()));
+		elements.forEach((arr) => void arr.push(this.createBr()));
+		elements = elements.flat();
+
+		return elements;
+	}
+	resetInputMatrixItems(index) {
+		$$('.divDisplayMatrixContainer')
+			[index].querySelectorAll('input')
+			?.forEach((input) => void input.remove());
+		$$('.divDisplayMatrixContainer')
+			[index].querySelectorAll('br')
+			?.forEach((br) => void br.remove());
+	}
+	printInputMatrixItems(elements, index) {
+		this.resetInputMatrixItems(index);
+		$$('.divDisplayMatrixContainer')[index].append(combineElement(elements));
+		console.log(elements);
+	}
 	printMatrixBottomContainer() {
 		const divBottomNormalMatrixContainer = createElement('DIV');
 		const divBottomTopNormalMatrixContainer = createElement('DIV');
@@ -57,6 +90,9 @@ export default class {
 
 		inputNormalMatrixRow.setAttribute('placeholder', Controller.GENERAL_MATRIX.ROW_KEYWORD);
 		inputNormalMatrixCol.setAttribute('placeholder', Controller.GENERAL_MATRIX.COL_KEYWORD);
+
+		inputNormalMatrixRow.setAttribute('maxLength', '1');
+		inputNormalMatrixCol.setAttribute('maxLength', '1');
 
 		const fragment = combineElement([inputNormalMatrixRow, inputNormalMatrixCol]);
 

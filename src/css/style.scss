@@ -26,6 +26,21 @@ body {
 			width: 100%;
 			height: 65%;
 			margin-bottom: 0.7vw;
+			@include flexRow;
+			.divDisplayMatrixContainer {
+				padding-left: 0.1vw;
+				padding-top: 0.1vw;
+				input.inputMatrixItem {
+					margin-right: 0.1vw;
+					margin-bottom: 0.1vw;
+					width: 3.1vw;
+					height: 3.1vw;
+					border: 1px solid black;
+					border-radius: 0.3vw;
+					text-align: center;
+					font-size: 1vw;
+				}
+			}
 		}
 		.divBottomNormalMatrixContainer {
 			width: 100%;
@@ -86,13 +101,13 @@ body {
 					background-color: rgb(123, 91, 145);
 					border-right: 1px solid #fafafa;
 					cursor: pointer;
-          transition: all 300ms ease-in-out;
+					transition: all 300ms ease-in-out;
 					i.iDice {
 						color: #fafafa;
 						font-size: 3.5vw;
 					}
 				}
-        button.buttonRandomNormalMatrix:hover {
+				button.buttonRandomNormalMatrix:hover {
 					background-color: rgb(89, 50, 114);
 				}
 				button.buttonDeleteNormalMatrixContainer {
@@ -104,13 +119,13 @@ body {
 					border-bottom-right-radius: 1.5vw;
 					background-color: rgb(123, 91, 145);
 					cursor: pointer;
-          transition: all 300ms ease-in-out;
+					transition: all 300ms ease-in-out;
 					i.iTrashCan {
 						color: #fafafa;
 						font-size: 3.5vw;
 					}
 				}
-        button.buttonDeleteNormalMatrix:hover {
+				button.buttonDeleteNormalMatrix:hover {
 					background-color: rgb(89, 50, 114);
 				}
 			}
@@ -147,7 +162,7 @@ body {
 				justify-content: center;
 				button {
 					background-color: transparent;
-          margin: 0 1.5vw;
+					margin: 0 1.5vw;
 					i {
 						color: rgb(123, 91, 145);
 						font-size: 6vw;
@@ -164,6 +179,40 @@ body {
 			width: 100%;
 			height: 65%;
 			@include flexCol;
+		}
+	}
+	.divModalWrapperContainer {
+		width: 100%;
+		height: 100%;
+		@include flexRow;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		background-color: rgba($color: #000000, $alpha: 0.7);
+		.divModalContainer {
+			width: 70%;
+			height: 50%;
+			@include flexRow;
+			border: 1px solid #fafafa;
+			position: relative;
+			font-size: 2vw;
+			font-family: 'Times New Roman', Times, serif;
+			border-radius: 1vw;
+			font-weight: bold;
+			color: #fafafa;
+			button.buttonDeleteModalContainer {
+				position: absolute;
+				top: 1vw;
+				right: 1vw;
+				background-color: transparent;
+				border-radius: 50%;
+				cursor: pointer;
+				i.iDeleteModal {
+					font-size: 3vw;
+					color: rgb(220, 22, 22);
+				}
+			}
 		}
 	}
 }

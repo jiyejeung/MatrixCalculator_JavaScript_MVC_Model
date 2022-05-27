@@ -168,6 +168,24 @@ body {
   width: 100%;
   height: 65%;
   margin-bottom: 0.7vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.app section.sectionMatrixContainer .divTopNormalMatrixContainer .divDisplayMatrixContainer {
+  padding-left: 0.1vw;
+  padding-top: 0.1vw;
+}
+.app section.sectionMatrixContainer .divTopNormalMatrixContainer .divDisplayMatrixContainer input.inputMatrixItem {
+  margin-right: 0.1vw;
+  margin-bottom: 0.1vw;
+  width: 3.1vw;
+  height: 3.1vw;
+  border: 1px solid black;
+  border-radius: 0.3vw;
+  text-align: center;
+  font-size: 1vw;
 }
 .app section.sectionMatrixContainer .divBottomNormalMatrixContainer {
   width: 100%;
@@ -322,4 +340,44 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.app .divModalWrapperContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.app .divModalWrapperContainer .divModalContainer {
+  width: 70%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fafafa;
+  position: relative;
+  font-size: 2vw;
+  font-family: "Times New Roman", Times, serif;
+  border-radius: 1vw;
+  font-weight: bold;
+  color: #fafafa;
+}
+.app .divModalWrapperContainer .divModalContainer button.buttonDeleteModalContainer {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.app .divModalWrapperContainer .divModalContainer button.buttonDeleteModalContainer i.iDeleteModal {
+  font-size: 3vw;
+  color: rgb(220, 22, 22);
 }/*# sourceMappingURL=style.css.map */

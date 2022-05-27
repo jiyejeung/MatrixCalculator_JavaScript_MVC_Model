@@ -11,7 +11,7 @@ export const createElement = (tagName, tagText = '') => {
 
 export const combineElement = (elements) => {
 	const fragment = document.createDocumentFragment();
-	elements.forEach((element) => void fragment.append(element));
+	fragment.append(...elements)
 
 	return fragment;
 };
