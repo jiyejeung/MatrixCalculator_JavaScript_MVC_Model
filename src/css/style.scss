@@ -179,6 +179,20 @@ body {
 			width: 100%;
 			height: 65%;
 			@include flexCol;
+			.divDisplayCalcMatrixContainer {
+				padding-left: 0.1vw;
+				padding-top: 0.1vw;
+				input.inputCalcMatrixItem {
+					margin-right: 0.1vw;
+					margin-bottom: 0.1vw;
+					width: 3.1vw;
+					height: 3.1vw;
+					border: 1px solid black;
+					border-radius: 0.3vw;
+					text-align: center;
+					font-size: 0.6vw;
+				}
+			}
 		}
 	}
 	.divModalWrapperContainer {

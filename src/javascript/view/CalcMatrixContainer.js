@@ -1,5 +1,5 @@
 import Controller from '../controller/Controller.js';
-import { createElement } from '../utils/ElementTool.js';
+import { combineElement, createElement } from '../utils/ElementTool.js';
 
 export default Object.freeze({
 	printCalcMatrixContainer() {
@@ -58,8 +58,35 @@ export default Object.freeze({
 	},
 	printDisplayMatrixContainer() {
 		const divDisplayMatrixContainer = createElement('DIV');
-		divDisplayMatrixContainer.className = 'divDisplayMatrixContainer';
+		divDisplayMatrixContainer.className = 'divDisplayCalcMatrixContainer';
 
 		return divDisplayMatrixContainer;
+	},
+	createInputMatrixItem() {
+		const inputMatrixItem = createElement('INPUT');
+
+		inputMatrixItem.className = 'inputCalcMatrixItem';
+
+		inputMatrixItem.setAttribute('readOnly', 'readOnly');
+
+		return inputMatrixItem;
+	},
+	createBr() {
+		return createElement('BR');
+	},
+	createInputCalcMatrixItems(rowValue, colValue) {
+		let elements = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0).map(() => this.createInputMatrixItem()));
+		elements.forEach((arr) => void arr.push(this.createBr()));
+		elements = elements.flat();
+
+		return elements;
+	},
+	resetInputMatrixItems() {
+		$$('.divDisplayCalcMatrixContainer input')?.forEach((input) => void input.remove());
+		$$('.divDisplayCalcMatrixContainer br')?.forEach((br) => void br.remove());
+	},
+	printInputMatrixItems(elements) {
+		this.resetInputMatrixItems(index);
+		$('.divDisplayCalcMatrixContainer').append(combineElement(elements));
 	},
 });

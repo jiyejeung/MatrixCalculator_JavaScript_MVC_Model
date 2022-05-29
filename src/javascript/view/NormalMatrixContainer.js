@@ -33,27 +33,20 @@ export default class NormalMatrixContainer {
 
 		return divDisplayMatrixContainer;
 	}
-	createInputMatrixItem() {
+	static createInputMatrixItem() {
 		const inputMatrixItem = createElement('INPUT');
 
 		inputMatrixItem.className = 'inputMatrixItem';
 
 		inputMatrixItem.setAttribute('value', '0');
-		inputMatrixItem.setAttribute('maxLength', '2');
+		inputMatrixItem.setAttribute('maxLength', '3');
 
 		return inputMatrixItem;
 	}
-	createBr() {
+	static createBr() {
 		return createElement('BR');
 	}
-	createInputMatrixItems(rowValue, colValue) {
-		let elements = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0).map(() => this.createInputMatrixItem()));
-		elements.forEach((arr) => void arr.push(this.createBr()));
-		elements = elements.flat();
-
-		return elements;
-	}
-	resetInputMatrixItems(index) {
+	static resetInputMatrixItems(index) {
 		$$('.divDisplayMatrixContainer')
 			[index].querySelectorAll('input')
 			?.forEach((input) => void input.remove());
@@ -61,10 +54,26 @@ export default class NormalMatrixContainer {
 			[index].querySelectorAll('br')
 			?.forEach((br) => void br.remove());
 	}
-	printInputMatrixItems(elements, index) {
-		this.resetInputMatrixItems(index);
-		$$('.divDisplayMatrixContainer')[index].append(combineElement(elements));
-		console.log(elements);
+	static createInputMatrixItems(rowValue, colValue) {
+		const elements = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0).map(() => NormalMatrixContainer.createInputMatrixItem()));
+		elements.forEach((arr) => void arr.push(NormalMatrixContainer.createBr()));
+
+		return elements.flat();
+	}
+	static printInputMatrixItems(elements, index) {
+		$$('.divDisplayMatrixContainer')[index].appendChild(combineElement(elements));
+	}
+	static resetInputRowAndCol(index) {
+		$$('.inputNormalMatrixRow')[index].value = '';
+		$$('.inputNormalMatrixCol')[index].value = '';
+	}
+	static setReadOnly(index) {
+		$$('.inputNormalMatrixRow')[index].setAttribute('readOnly', 'readOnly');
+		$$('.inputNormalMatrixCol')[index].setAttribute('readOnly', 'readOnly');
+	}
+	static setNotReadOnly(index) {
+		$$('.inputNormalMatrixRow')[index].removeAttribute('readOnly');
+		$$('.inputNormalMatrixCol')[index].removeAttribute('readOnly');
 	}
 	printMatrixBottomContainer() {
 		const divBottomNormalMatrixContainer = createElement('DIV');
