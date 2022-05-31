@@ -1,7 +1,8 @@
 import Controller from '../controller/Controller.js';
 import { combineElement, createElement } from '../utils/ElementTool.js';
 
-export default Object.freeze({
+export default Object.create({
+	calcHandler: true,
 	printCalcMatrixContainer() {
 		const sectionCalcMatrixContainer = createElement('SECTION');
 		sectionCalcMatrixContainer.className = 'sectionCalcMatrixContainer';

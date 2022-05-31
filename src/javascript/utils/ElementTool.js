@@ -1,6 +1,6 @@
 export const $ = (element) => document.querySelector(element);
 
-export const $$ = (elements) => document.querySelectorAll(elements);
+export const $$ = (elements) => Array.from(document.querySelectorAll(elements));
 
 export const createElement = (tagName, tagText = '') => {
 	const element = document.createElement(tagName);
@@ -11,7 +11,7 @@ export const createElement = (tagName, tagText = '') => {
 
 export const combineElement = (elements) => {
 	const fragment = document.createDocumentFragment();
-	fragment.append(...elements)
+	fragment.append(...elements);
 
 	return fragment;
 };

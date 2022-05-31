@@ -63,6 +63,14 @@ export default class NormalMatrixContainer {
 	static printInputMatrixItems(elements, index) {
 		$$('.divDisplayMatrixContainer')[index].appendChild(combineElement(elements));
 	}
+	static printRandomNumber() {
+		return Math.floor(Math.random() * 2) ? Math.floor(Math.random() * 100) : -Math.floor(Math.random() * 100);
+	}
+	static inputRandomNumber(index) {
+		$$('.divDisplayMatrixContainer')
+			[index].querySelectorAll('.inputMatrixItem')
+			.forEach((input) => void (input.value = NormalMatrixContainer.printRandomNumber()));
+	}
 	static resetInputRowAndCol(index) {
 		$$('.inputNormalMatrixRow')[index].value = '';
 		$$('.inputNormalMatrixCol')[index].value = '';
