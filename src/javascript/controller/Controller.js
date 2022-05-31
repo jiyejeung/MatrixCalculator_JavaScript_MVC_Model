@@ -13,6 +13,7 @@ export default Object.freeze({
 		this.deleteInputMatrixItems();
 		this.randomInputMatrixItems();
 		this.calcPlus();
+		this.calcMinus();
 	},
 	printMatrix() {
 		$$('.buttonCreateNormalMatrix').forEach(
@@ -62,6 +63,7 @@ export default Object.freeze({
 	deleteModal() {
 		$('.buttonDeleteModalContainer').addEventListener('click', () => {
 			Modal.removeModal();
+			CalcMatrixContainer.calcHandler = true;
 		});
 	},
 	randomInputMatrixItems() {
@@ -73,9 +75,9 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler = false;
 		}
 	},
-	confirmSameRowAndCol() {
+	confirmSameRowAndCol(modalText) {
 		if (CalcMatrixContainer.calcHandler && ($$('.inputNormalMatrixRow')[0].value !== $$('.inputNormalMatrixRow')[1].value || $$('.inputNormalMatrixCol')[0].value !== $$('.inputNormalMatrixCol')[1].value)) {
-			Modal.printModal(Constants.WARNING_KEYWORD.WARNING04);
+			Modal.printModal(modalText); // 행렬의 덧셈을 위해서 행과 열을 같게 해주세요 // 행렬의 마이너스를 위해서 행과 열을 같게 해주세요
 			CalcMatrixContainer.calcHandler = false;
 		}
 	},
@@ -91,17 +93,15 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler = false;
 		}
 	},
+	confirmForCalcPlusOrMinus(modalText) {
+		this.confirmExistMatrix();
+		this.confirmSameRowAndCol(modalText);
+		this.confirmWrongValue();
+		this.confirmThreeFigures();
+	},
 	calcPlus() {
 		$('.buttonCalcPlus').addEventListener('click', () => {
-			this.confirmExistMatrix();
-			this.confirmSameRowAndCol();
-			this.confirmWrongValue();
-			this.confirmThreeFigures();
-			if (CalcMatrixContainer.calcHandler) {
-				console.log('good');
-			} else {
-				console.log('bad');
-			}
+			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING04);
 			// ---- //
 			// input 태그들을 모두 초기화해야함
 			// input 태그들을 생성해야함
@@ -109,12 +109,13 @@ export default Object.freeze({
 		});
 	},
 	calcMinus() {
-		$('.buttonCalcMinus').addEventListener('click', () => ({
-			// divDisplayMatrixContainer 안에 input태그들이 존재하는지 확인해야함
-			// input 첫번째와 두번째의 값이 같은지 확인해야함
-			// divDisplayMatrixContainer input 안에 빈 값은 없는지 확인해야함, 잘못된 값이 있는지 확인해야함
-			// divDisplayMatrixContainer input 안에 두자리 이상의 값이 있는지, 없는지 확인해야함
-		}));
+		$('.buttonCalcMinus').addEventListener('click', () => {
+			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING05);
+			// ---- //
+			// input 태그들을 모두 초기화해야함
+			// input 태그들을 생성해야함
+			// input 첫번째와 두번째의 값을 빼서 value에 넣어야함
+		});
 	},
 	calcMultiply() {
 		$('.buttonCalcMultiply').addEventListener('click', () => {});
