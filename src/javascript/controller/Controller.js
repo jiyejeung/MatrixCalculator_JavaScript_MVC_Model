@@ -37,7 +37,7 @@ export default Object.freeze({
 	confirmNumber(rowValue, colValue, index) {
 		if (/^[1-9]+$/.test(rowValue) && /^[1-9]+$/.test(colValue)) {
 			this.resetNormalMatrixContainer(index);
-			NormalMatrixContainer.printInputMatrixItems(NormalMatrixContainer.createInputMatrixItems(parseInt(rowValue), parseInt(colValue)), index);
+			NormalMatrixContainer.printInputMatrixItems(NormalMatrixContainer.createInputMatrixItems(rowValue, colValue), index);
 			NormalMatrixContainer.setReadOnly(index);
 			return;
 		} else if (rowValue === '' || colValue === '') {
@@ -57,6 +57,7 @@ export default Object.freeze({
 					this.resetNormalMatrixContainer(index);
 					NormalMatrixContainer.resetInputRowAndCol(index);
 					NormalMatrixContainer.setNotReadOnly(index);
+					CalcMatrixContainer.resetInputMatrixItems();
 				})
 		);
 	},
@@ -70,7 +71,7 @@ export default Object.freeze({
 		$$('.buttonRandomNormalMatrixContainer').forEach((button, index) => void button.addEventListener('click', () => void NormalMatrixContainer.inputRandomNumber(index)));
 	},
 	confirmExistMatrix() {
-		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some((divDisplay) => divDisplay.querySelector('input') == null)) {
+		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some(divDisplay => divDisplay.querySelector('input') == null)) {
 			Modal.printModal(Constants.WARNING_KEYWORD.WARNING07);
 			CalcMatrixContainer.calcHandler = false;
 		}
@@ -82,13 +83,13 @@ export default Object.freeze({
 		}
 	},
 	confirmWrongValue() {
-		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some((divDisplay) => Array.from(divDisplay.querySelectorAll('input')).some((input) => !/^-?\d{1}$|^-?\d{2}$/g.test(input.value)))) {
+		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some(divDisplay => Array.from(divDisplay.querySelectorAll('input')).some(input => !/^-?\d{1}$|^-?\d{2}$/g.test(input.value)))) {
 			Modal.printModal(Constants.WARNING_KEYWORD.WARNING03);
 			CalcMatrixContainer.calcHandler = false;
 		}
 	},
 	confirmThreeFigures() {
-		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some((divDisplay) => Array.from(divDisplay.querySelectorAll('input')).some((input) => /^\d{3}$/g.test(input.value)))) {
+		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some(divDisplay => Array.from(divDisplay.querySelectorAll('input')).some(input => /^\d{3}$/g.test(input.value)))) {
 			Modal.printModal(Constants.WARNING_KEYWORD.WARNING03);
 			CalcMatrixContainer.calcHandler = false;
 		}
@@ -106,6 +107,7 @@ export default Object.freeze({
 			// input 태그들을 모두 초기화해야함
 			// input 태그들을 생성해야함
 			// input 첫번째와 두번째의 값을 합쳐 value에 넣어야함
+			CalcMatrixContainer.calcHandler && CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value));
 		});
 	},
 	calcMinus() {
@@ -115,6 +117,7 @@ export default Object.freeze({
 			// input 태그들을 모두 초기화해야함
 			// input 태그들을 생성해야함
 			// input 첫번째와 두번째의 값을 빼서 value에 넣어야함
+			CalcMatrixContainer.calcHandler && CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value));
 		});
 	},
 	calcMultiply() {

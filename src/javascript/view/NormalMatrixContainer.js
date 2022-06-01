@@ -55,7 +55,7 @@ export default class NormalMatrixContainer {
 			?.forEach((br) => void br.remove());
 	}
 	static createInputMatrixItems(rowValue, colValue) {
-		const elements = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0).map(() => NormalMatrixContainer.createInputMatrixItem()));
+		const elements = new Array(+rowValue).fill(0).map(() => new Array(+colValue).fill(0).map(() => NormalMatrixContainer.createInputMatrixItem()));
 		elements.forEach((arr) => void arr.push(NormalMatrixContainer.createBr()));
 
 		return elements.flat();
