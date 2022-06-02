@@ -100,24 +100,50 @@ export default Object.freeze({
 		this.confirmWrongValue();
 		this.confirmThreeFigures();
 	},
+	getFirstMatrixInputValues() {
+		const rowValue = $$('.inputNormalMatrixRow')[0].value;
+		const colValue = $$('.inputNormalMatrixCol')[0].value;
+		let index = -1;
+		const firstMatrixInputValues = new Array(+rowValue).fill(0).map(() =>
+			new Array(+colValue).fill(0).map(() => {
+				index++;
+				return +$$('.divDisplayMatrixContainer')[0].querySelectorAll('input')[index].value;
+			})
+		);
+
+		return firstMatrixInputValues;
+	},
+	getSecondMatrixInputValue() {
+		const rowValue = $$('.inputNormalMatrixRow')[1].value;
+		const colValue = $$('.inputNormalMatrixCol')[1].value;
+		let index = -1;
+		const secondMatrixInputValues = new Array(+rowValue).fill(0).map(() =>
+			new Array(+colValue).fill(0).map(() => {
+				index++;
+				return +$$('.divDisplayMatrixContainer')[1].querySelectorAll('input')[index].value;
+			})
+		);
+
+		return secondMatrixInputValues;
+	},
 	calcPlus() {
 		$('.buttonCalcPlus').addEventListener('click', () => {
 			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING04);
+			CalcMatrixContainer.calcHandler &&
+				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
+				CalcMatrixContainer.calcPlusInputMatrixItems());
 			// ---- //
-			// input 태그들을 모두 초기화해야함
-			// input 태그들을 생성해야함
 			// input 첫번째와 두번째의 값을 합쳐 value에 넣어야함
-			CalcMatrixContainer.calcHandler && CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value));
 		});
 	},
 	calcMinus() {
 		$('.buttonCalcMinus').addEventListener('click', () => {
 			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING05);
+			CalcMatrixContainer.calcHandler &&
+				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
+				CalcMatrixContainer.calcMinusInputMatrixItems());
 			// ---- //
-			// input 태그들을 모두 초기화해야함
-			// input 태그들을 생성해야함
 			// input 첫번째와 두번째의 값을 빼서 value에 넣어야함
-			CalcMatrixContainer.calcHandler && CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value));
 		});
 	},
 	calcMultiply() {

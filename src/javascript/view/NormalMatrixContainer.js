@@ -49,14 +49,14 @@ export default class NormalMatrixContainer {
 	static resetInputMatrixItems(index) {
 		$$('.divDisplayMatrixContainer')
 			[index].querySelectorAll('input')
-			?.forEach((input) => void input.remove());
+			?.forEach(input => void input.remove());
 		$$('.divDisplayMatrixContainer')
 			[index].querySelectorAll('br')
-			?.forEach((br) => void br.remove());
+			?.forEach(br => void br.remove());
 	}
 	static createInputMatrixItems(rowValue, colValue) {
 		const elements = new Array(+rowValue).fill(0).map(() => new Array(+colValue).fill(0).map(() => NormalMatrixContainer.createInputMatrixItem()));
-		elements.forEach((arr) => void arr.push(NormalMatrixContainer.createBr()));
+		elements.forEach(arr => void arr.push(NormalMatrixContainer.createBr()));
 
 		return elements.flat();
 	}
@@ -69,7 +69,7 @@ export default class NormalMatrixContainer {
 	static inputRandomNumber(index) {
 		$$('.divDisplayMatrixContainer')
 			[index].querySelectorAll('.inputMatrixItem')
-			.forEach((input) => void (input.value = NormalMatrixContainer.printRandomNumber()));
+			.forEach(input => void (input.value = NormalMatrixContainer.printRandomNumber()));
 	}
 	static resetInputRowAndCol(index) {
 		$$('.inputNormalMatrixRow')[index].value = '';
@@ -82,22 +82,6 @@ export default class NormalMatrixContainer {
 	static setNotReadOnly(index) {
 		$$('.inputNormalMatrixRow')[index].removeAttribute('readOnly');
 		$$('.inputNormalMatrixCol')[index].removeAttribute('readOnly');
-	}
-	printMatrixBottomContainer() {
-		const divBottomNormalMatrixContainer = createElement('DIV');
-		const divBottomTopNormalMatrixContainer = createElement('DIV');
-		const divBottomBottomNormalMatrixContainer = createElement('DIV');
-
-		divBottomNormalMatrixContainer.className = 'divBottomNormalMatrixContainer';
-		divBottomTopNormalMatrixContainer.className = 'divBottomTopNormalMatrixContainer';
-		divBottomBottomNormalMatrixContainer.className = 'divBottomBottomNormalMatrixContainer';
-
-		divBottomTopNormalMatrixContainer.appendChild(this.printRowAndColContainer());
-		divBottomBottomNormalMatrixContainer.appendChild(this.printButtonContainer());
-
-		divBottomNormalMatrixContainer.append(this.printTitle(), divBottomTopNormalMatrixContainer, divBottomBottomNormalMatrixContainer);
-
-		return divBottomNormalMatrixContainer;
 	}
 	printRowAndColContainer() {
 		const inputNormalMatrixRow = createElement('INPUT');
@@ -116,6 +100,17 @@ export default class NormalMatrixContainer {
 
 		return fragment;
 	}
+	printButton(buttonClassName, iClassName) {
+		const buttonNormal = createElement('BUTTON');
+		const iNormal = createElement('I');
+
+		buttonNormal.className = buttonClassName;
+		iNormal.className = iClassName;
+
+		buttonNormal.appendChild(iNormal);
+
+		return buttonNormal;
+	}
 	printButtonContainer() {
 		const buttonCreateNormalMatrix = createElement('BUTTON', Controller.GENERAL_MATRIX.CREATE_KEYWORD);
 		const buttonRandomNormalMatrixContainer = this.printButton('buttonRandomNormalMatrixContainer', 'fa-solid fa-dice iDice');
@@ -127,16 +122,21 @@ export default class NormalMatrixContainer {
 
 		return fragment;
 	}
-	printButton(buttonClassName, iClassName) {
-		const buttonNormal = createElement('BUTTON');
-		const iNormal = createElement('I');
+	printMatrixBottomContainer() {
+		const divBottomNormalMatrixContainer = createElement('DIV');
+		const divBottomTopNormalMatrixContainer = createElement('DIV');
+		const divBottomBottomNormalMatrixContainer = createElement('DIV');
 
-		buttonNormal.className = buttonClassName;
-		iNormal.className = iClassName;
+		divBottomNormalMatrixContainer.className = 'divBottomNormalMatrixContainer';
+		divBottomTopNormalMatrixContainer.className = 'divBottomTopNormalMatrixContainer';
+		divBottomBottomNormalMatrixContainer.className = 'divBottomBottomNormalMatrixContainer';
 
-		buttonNormal.appendChild(iNormal);
+		divBottomTopNormalMatrixContainer.appendChild(this.printRowAndColContainer());
+		divBottomBottomNormalMatrixContainer.appendChild(this.printButtonContainer());
 
-		return buttonNormal;
+		divBottomNormalMatrixContainer.append(this.printTitle(), divBottomTopNormalMatrixContainer, divBottomBottomNormalMatrixContainer);
+
+		return divBottomNormalMatrixContainer;
 	}
 	toggleButtons(index) {
 		if (this.toggleButtonsHandler) {
@@ -151,5 +151,47 @@ export default class NormalMatrixContainer {
 			this.toggleButtonsHandler = true;
 			console.log(this.h1NormalMatrixTitleText, this.toggleButtonsHandler);
 		}
+	}
+	static getInputMatrixItemValues() {
+		const firstMatrixValues = $$('.divDisplayMatrixContainer')[0]
+			.querySelectorAll('input')
+			.map(input => +input.value);
+		const secondMatrixValues = $$('.divDisplayMatrixContainer')[1]
+			.querySelectorAll('input')
+			.map(input => +input.value);
+
+		return [firstMatrixValues, secondMatrixValues];
+	}
+
+	static getInputMatrixItemValues(rowValue, colValue) {
+		const firstMatrixValues = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0));
+		const secondMatrixValues = new Array(rowValue).fill(0).map(() => new Array(colValue).fill(0));
+
+		let firstIndex = 0;
+		let secondIndex = 0;
+
+		firstMatrixValues.forEach(
+			arr =>
+				void arr.map(() => {
+					let value = $$('.divDisplayMatrixContainer')[0]
+						.querySelectorAll('input')
+						.map(input => +input.value)[firstIndex];
+					firstIndex++;
+
+					return value;
+				})
+		);
+		secondMatrixValues.forEach(
+			arr =>
+				void arr.map(() => {
+					let value = $$('.divDisplayMatrixContainer')[1]
+						.querySelectorAll('input')
+						.map(input => +input.value)[secondIndex];
+					secondIndex++;
+					return value;
+				})
+		);
+
+		return [firstMatrixValues, secondMatrixValues];
 	}
 }

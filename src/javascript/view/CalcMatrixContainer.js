@@ -78,9 +78,8 @@ export default Object.seal({
 	createInputCalcMatrixItems(rowValue, colValue) {
 		let elements = new Array(+rowValue).fill(0).map(() => new Array(+colValue).fill(0).map(() => this.createInputMatrixItem()));
 		elements.forEach(arr => void arr.push(this.createBr()));
-		elements = elements.flat();
 
-		return elements;
+		return elements.flat();
 	},
 	resetInputMatrixItems() {
 		$$('.divDisplayCalcMatrixContainer input')?.forEach(input => void input.remove());
@@ -88,6 +87,12 @@ export default Object.seal({
 	},
 	printInputMatrixItems(elements) {
 		this.resetInputMatrixItems();
-		$('.divDisplayCalcMatrixContainer').append(combineElement(elements));
+		$('.divDisplayCalcMatrixContainer').appendChild(combineElement(elements));
+	},
+	calcPlusInputMatrixItems() {
+		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] + Controller.getSecondMatrixInputValue().flat()[index]));
+	},
+	calcMinusInputMatrixItems() {
+		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] - Controller.getSecondMatrixInputValue().flat()[index]));
 	},
 });

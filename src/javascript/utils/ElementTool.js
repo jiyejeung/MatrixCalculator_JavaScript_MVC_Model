@@ -1,6 +1,6 @@
-export const $ = (element) => document.querySelector(element);
+export const $ = element => document.querySelector(element);
 
-export const $$ = (elements) => Array.from(document.querySelectorAll(elements));
+export const $$ = elements => Array.from(document.querySelectorAll(elements));
 
 export const createElement = (tagName, tagText = '') => {
 	const element = document.createElement(tagName);
@@ -9,7 +9,7 @@ export const createElement = (tagName, tagText = '') => {
 	return element;
 };
 
-export const combineElement = (elements) => {
+export const combineElement = elements => {
 	const fragment = document.createDocumentFragment();
 	fragment.append(...elements);
 
@@ -22,4 +22,4 @@ export const removeElements = (parentSelector, selfSelector) =>
 	void document
 		.querySelector(parentSelector)
 		.querySelectorAll(selfSelector)
-		.forEach((element) => void element.remove());
+		.forEach(element => void element.remove());
