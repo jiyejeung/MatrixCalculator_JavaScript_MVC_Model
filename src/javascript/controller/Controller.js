@@ -14,6 +14,7 @@ export default Object.freeze({
 		this.randomInputMatrixItems();
 		this.calcPlus();
 		this.calcMinus();
+		this.calcMultiply();
 	},
 	printMatrix() {
 		$$('.buttonCreateNormalMatrix').forEach(
@@ -100,6 +101,12 @@ export default Object.freeze({
 		this.confirmWrongValue();
 		this.confirmThreeFigures();
 	},
+	confirmForCalcMultiply() {
+		this.confirmExistMatrix();
+		// 첫번재 행렬의 열과 두번째 행렬의 렬의 값이 같은지 확인하는 함수()
+		this.confirmWrongValue();
+		this.confirmThreeFigures();
+	},
 	getFirstMatrixInputValues() {
 		const rowValue = $$('.inputNormalMatrixRow')[0].value;
 		const colValue = $$('.inputNormalMatrixCol')[0].value;
@@ -132,8 +139,6 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler &&
 				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
 				CalcMatrixContainer.calcPlusInputMatrixItems());
-			// ---- //
-			// input 첫번째와 두번째의 값을 합쳐 value에 넣어야함
 		});
 	},
 	calcMinus() {
@@ -142,12 +147,15 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler &&
 				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
 				CalcMatrixContainer.calcMinusInputMatrixItems());
-			// ---- //
-			// input 첫번째와 두번째의 값을 빼서 value에 넣어야함
 		});
 	},
 	calcMultiply() {
-		$('.buttonCalcMultiply').addEventListener('click', () => {});
+		$('.buttonCalcMultiply').addEventListener('click', () => {
+			this.confirmForCalcMultiply();
+			CalcMatrixContainer.calcHandler &&
+				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[1].value)),
+				CalcMatrixContainer.calcMultiplyInputMatrixItems());
+		});
 	},
 	get GENERAL_MATRIX() {
 		return Constants.GENERAL_MATRIX;

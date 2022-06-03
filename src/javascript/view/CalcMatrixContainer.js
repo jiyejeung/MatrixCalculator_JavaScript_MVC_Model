@@ -95,4 +95,5 @@ export default Object.seal({
 	calcMinusInputMatrixItems() {
 		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] - Controller.getSecondMatrixInputValue().flat()[index]));
 	},
+	calcMultiplyInputMatrixItems() {},
 });
