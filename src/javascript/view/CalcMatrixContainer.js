@@ -90,10 +90,17 @@ export default Object.seal({
 		$('.divDisplayCalcMatrixContainer').appendChild(combineElement(elements));
 	},
 	calcPlusInputMatrixItems() {
-		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] + Controller.getSecondMatrixInputValue().flat()[index]));
+		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] + Controller.getSecondMatrixInputValues().flat()[index]));
 	},
 	calcMinusInputMatrixItems() {
-		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] - Controller.getSecondMatrixInputValue().flat()[index]));
+		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = Controller.getFirstMatrixInputValues().flat()[index] - Controller.getSecondMatrixInputValues().flat()[index]));
 	},
-	calcMultiplyInputMatrixItems() {},
+	calcMultiplyInputMatrixItems() {
+		const firstMatrix = Controller.getFirstMatrixInputValues();
+		const secondMatrix = Controller.getSecondMatrixInputValues();
+
+		const resultMatrix = firstMatrix.map(row => secondMatrix[0].map((_, index01) => row.reduce((pre, cur, index02) => pre + cur * secondMatrix[index02][index01], 0))).flat();
+
+		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = resultMatrix[index]));
+	},
 });

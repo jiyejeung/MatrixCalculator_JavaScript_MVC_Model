@@ -95,6 +95,12 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler = false;
 		}
 	},
+	confirmSameFirstRowAndSecondCol() {
+		if (CalcMatrixContainer.calcHandler && $$('.inputNormalMatrixCol')[0].value !== $$('.inputNormalMatrixRow')[1].value) {
+			Modal.printModal(Constants.WARNING_KEYWORD.WARNING06);
+			CalcMatrixContainer.calcHandler = false;
+		}
+	},
 	confirmForCalcPlusOrMinus(modalText) {
 		this.confirmExistMatrix();
 		this.confirmSameRowAndCol(modalText);
@@ -103,7 +109,7 @@ export default Object.freeze({
 	},
 	confirmForCalcMultiply() {
 		this.confirmExistMatrix();
-		// 첫번재 행렬의 열과 두번째 행렬의 렬의 값이 같은지 확인하는 함수()
+		this.confirmSameFirstRowAndSecondCol();
 		this.confirmWrongValue();
 		this.confirmThreeFigures();
 	},
@@ -120,7 +126,7 @@ export default Object.freeze({
 
 		return firstMatrixInputValues;
 	},
-	getSecondMatrixInputValue() {
+	getSecondMatrixInputValues() {
 		const rowValue = $$('.inputNormalMatrixRow')[1].value;
 		const colValue = $$('.inputNormalMatrixCol')[1].value;
 		let index = -1;
