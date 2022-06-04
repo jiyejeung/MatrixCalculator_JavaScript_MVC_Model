@@ -2,6 +2,7 @@ import Controller from '../controller/Controller.js';
 import { $, $$, combineElement, createElement } from '../utils/ElementTool.js';
 
 export default Object.seal({
+	calcState: '',
 	calcHandler: true,
 	printCalcMatrixContainer() {
 		const sectionCalcMatrixContainer = createElement('SECTION');

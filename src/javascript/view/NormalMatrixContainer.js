@@ -1,5 +1,5 @@
 import Controller from '../controller/Controller.js';
-import { $, $$, combineElement, createElement } from '../utils/ElementTool.js';
+import { $$, combineElement, createElement } from '../utils/ElementTool.js';
 
 export default class NormalMatrixContainer {
 	constructor(h1NormalMatrixTitleText) {

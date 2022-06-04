@@ -1,5 +1,5 @@
 import Constants from '../model/Constants.js';
-import { $, $$, combineElement } from '../utils/ElementTool.js';
+import { $, $$ } from '../utils/ElementTool.js';
 import CalcMatrixContainer from '../view/CalcMatrixContainer.js';
 import Modal from '../view/Modal.js';
 import NormalMatrixContainer from '../view/NormalMatrixContainer.js';
@@ -12,9 +12,9 @@ export default Object.freeze({
 		this.printMatrix();
 		this.deleteInputMatrixItems();
 		this.randomInputMatrixItems();
-		this.calcPlus();
-		this.calcMinus();
-		this.calcMultiply();
+		this.clickCalcPlus();
+		this.clickCalcMinus();
+		this.clickCalcMultiply();
 	},
 	printMatrix() {
 		$$('.buttonCreateNormalMatrix').forEach(
@@ -59,6 +59,7 @@ export default Object.freeze({
 					NormalMatrixContainer.resetInputRowAndCol(index);
 					NormalMatrixContainer.setNotReadOnly(index);
 					CalcMatrixContainer.resetInputMatrixItems();
+					CalcMatrixContainer.calcState = '';
 				})
 		);
 	},
@@ -68,8 +69,27 @@ export default Object.freeze({
 			CalcMatrixContainer.calcHandler = true;
 		});
 	},
+	switchCalcState(index) {
+		NormalMatrixContainer.inputRandomNumber(index);
+		switch (CalcMatrixContainer.calcState) {
+			case 'plus':
+				this.calcPlus();
+				break;
+			case 'minus':
+				this.calcMinus();
+				break;
+			case 'multiply':
+				this.calcMultiply();
+				break;
+		}
+	},
 	randomInputMatrixItems() {
-		$$('.buttonRandomNormalMatrixContainer').forEach((button, index) => void button.addEventListener('click', () => void NormalMatrixContainer.inputRandomNumber(index)));
+		$$('.buttonRandomNormalMatrixContainer').forEach(
+			(button, index) =>
+				void button.addEventListener('click', () => {
+					this.switchCalcState(index);
+				})
+		);
 	},
 	confirmExistMatrix() {
 		if (CalcMatrixContainer.calcHandler && $$('.divDisplayMatrixContainer').some(divDisplay => divDisplay.querySelector('input') == null)) {
@@ -140,27 +160,39 @@ export default Object.freeze({
 		return secondMatrixInputValues;
 	},
 	calcPlus() {
-		$('.buttonCalcPlus').addEventListener('click', () => {
-			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING04);
-			CalcMatrixContainer.calcHandler &&
-				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
-				CalcMatrixContainer.calcPlusInputMatrixItems());
-		});
+		this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING04);
+		CalcMatrixContainer.calcHandler &&
+			(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
+			CalcMatrixContainer.calcPlusInputMatrixItems(),
+			(CalcMatrixContainer.calcState = 'plus'));
 	},
 	calcMinus() {
-		$('.buttonCalcMinus').addEventListener('click', () => {
-			this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING05);
-			CalcMatrixContainer.calcHandler &&
-				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
-				CalcMatrixContainer.calcMinusInputMatrixItems());
-		});
+		this.confirmForCalcPlusOrMinus(Constants.WARNING_KEYWORD.WARNING05);
+		CalcMatrixContainer.calcHandler &&
+			(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[0].value)),
+			CalcMatrixContainer.calcMinusInputMatrixItems(),
+			(CalcMatrixContainer.calcState = 'minus'));
 	},
 	calcMultiply() {
+		this.confirmForCalcMultiply();
+		CalcMatrixContainer.calcHandler &&
+			(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[1].value)),
+			CalcMatrixContainer.calcMultiplyInputMatrixItems(),
+			(CalcMatrixContainer.calcState = 'multiply'));
+	},
+	clickCalcPlus() {
+		$('.buttonCalcPlus').addEventListener('click', () => {
+			this.calcPlus();
+		});
+	},
+	clickCalcMinus() {
+		$('.buttonCalcMinus').addEventListener('click', () => {
+			this.calcMinus();
+		});
+	},
+	clickCalcMultiply() {
 		$('.buttonCalcMultiply').addEventListener('click', () => {
-			this.confirmForCalcMultiply();
-			CalcMatrixContainer.calcHandler &&
-				(CalcMatrixContainer.printInputMatrixItems(CalcMatrixContainer.createInputCalcMatrixItems($$('.inputNormalMatrixRow')[0].value, $$('.inputNormalMatrixCol')[1].value)),
-				CalcMatrixContainer.calcMultiplyInputMatrixItems());
+			this.calcMultiply();
 		});
 	},
 	get GENERAL_MATRIX() {
