@@ -35,7 +35,7 @@ export default Object.seal({
 		return h1CalcMatrixTitle;
 	},
 	printAuthor() {
-		const h2CalcMatrixAuthor = createElement('H2', `Created by ${Controller.CALC_MATRIX.AUTHOR[0]}, ${Controller.CALC_MATRIX.AUTHOR[1]}`);
+		const h2CalcMatrixAuthor = createElement('H2', `Created by ${Controller.CALC_MATRIX.AUTHOR}`);
 		h2CalcMatrixAuthor.className = 'h2CalcMatrixAuthor';
 
 		return h2CalcMatrixAuthor;
@@ -99,7 +99,6 @@ export default Object.seal({
 	calcMultiplyInputMatrixItems() {
 		const firstMatrix = Controller.getFirstMatrixInputValues();
 		const secondMatrix = Controller.getSecondMatrixInputValues();
-
 		const resultMatrix = firstMatrix.map(row => secondMatrix[0].map((_, index01) => row.reduce((pre, cur, index02) => pre + cur * secondMatrix[index02][index01], 0))).flat();
 
 		$$('.divDisplayCalcMatrixContainer input').forEach((input, index) => void (input.value = resultMatrix[index]));
