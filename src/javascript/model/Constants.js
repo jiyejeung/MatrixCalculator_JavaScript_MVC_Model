@@ -8,7 +8,7 @@ export default Object.freeze({
 	},
 	CALC_MATRIX: {
 		CALC_MATRIX_TITLE: 'Matrix Calculator',
-		AUTHOR: 'Yejeung Ji',
+		AUTHOR: 'Ye-jeung Ji',
 	},
 	WARNING_KEYWORD: {
 		WARNING01: '공란이 존재합니다.',
